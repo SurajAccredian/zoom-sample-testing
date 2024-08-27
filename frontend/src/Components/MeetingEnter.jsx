@@ -29,7 +29,7 @@ function MeetingEnter() {
       const role = 0;
       const exp = 1800;
       const response = await axios.post(
-        "http://localhost:4000/",
+        import.meta.env.VITE_ZOOM_BACKEND_URL,
         {
           meetingNumber: newMeetingId,
           role,

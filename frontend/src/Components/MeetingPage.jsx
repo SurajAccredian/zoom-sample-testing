@@ -21,7 +21,7 @@ const MeetingPage = () => {
       console.log(signature);
 
       ZoomMtg.init({
-        leaveUrl: "http://localhost:5173/",
+        leaveUrl:  import.meta.env.VITE_ZOOM_BACKEND_URL,
         patchJsMedia: true,
         leaveOnPageUnload: true,
         success: (success) => {
