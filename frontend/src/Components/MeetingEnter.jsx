@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 function MeetingEnter() {
   const [meetingType, setMeetingType] = useState("meeting");
+  const [loading, setLoading] = useState(false); // State for loading
   const navigate = useNavigate();
   const {
     register,
@@ -24,6 +25,8 @@ function MeetingEnter() {
     console.log(newMeetingId);
     console.log(data);
     console.log(meetingId);
+
+    setLoading(true); // Set loading to true before making the request
 
     try {
       const role = 0;
@@ -48,6 +51,8 @@ function MeetingEnter() {
       );
     } catch (error) {
       console.error("Error fetching the signature:", error.message);
+    } finally {
+      setLoading(false); // Reset loading state after request completes
     }
   };
 
@@ -160,9 +165,29 @@ function MeetingEnter() {
 
             <button
               type="submit"
-              className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              disabled={loading} // Disable button when loading
+              className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center relative"
             >
-              Join
+              {loading ? (
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <svg
+                    className="w-5 h-5 animate-spin text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </span>
+              ) : (
+                "Join"
+              )}
             </button>
           </form>
         </div>
