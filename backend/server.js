@@ -26,6 +26,9 @@ const StringToInt = (body) => ({
   )
 })
 
+app.get('/', (req, res) =>){
+  res.send("Zoom Backend Started");
+}
 app.post('/', (req, res) => {
   const requestBody = StringToInt(req.body)
   const validationErrors = validateRequest(requestBody, propValidations, schemaValidations)
