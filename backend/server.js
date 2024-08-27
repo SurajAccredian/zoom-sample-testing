@@ -26,7 +26,7 @@ const StringToInt = (body) => ({
   )
 })
 
-app.get('/', (req, res) =>{)
+app.get('/', (req, res) => {
   res.send("Zoom Backend Started");
 })
 
