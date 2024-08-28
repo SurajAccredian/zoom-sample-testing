@@ -33,6 +33,21 @@ function MeetingEnter() {
     document.cookie = `${name}=${JSON.stringify(value)};${expires};path=/`;
   };
 
+  const meetDet = {
+    meetingId: "84219703438",
+    password: "",
+    name: "",
+    email: "",
+    signature: "",
+  };
+
+  const joinMeeting = async () => {
+    navigate("/meeting");
+  };
+  const joinWebinar = async () => {
+    navigate("/webinar");
+  };
+
   const onSubmit = async (data) => {
     setLoader(true);
     const { meetingId, password, name, email } = data;
@@ -84,7 +99,6 @@ function MeetingEnter() {
       // navigate(
       //   `/meeting?meetingId=${newMeetingId}&password=${password}&signature=${sign}&name=${name}&email=${email}`
       // );
-
     } catch (error) {
       console.error("Error fetching the signature:", error.message);
     } finally {
@@ -120,7 +134,7 @@ function MeetingEnter() {
           </div>
         </div>
       )}
-
+      {/* 
       <section className="flex flex-col h-[100vh] justify-center items-center font-sans bg-gray-50 pt-6">
         <div className="w-full bg-white backdrop-blur-sm rounded-lg shadow-2xl  sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -260,7 +274,47 @@ function MeetingEnter() {
             </form>
           </div>
         </div>
+      </section> */}
+      <section className="flex flex-col  h-[100vh] justify-center items-center font-sans bg-gray-50 pt-6">
+        <div className="max-w-sm w-full mx-auto bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
+            Join a Session
+          </h2>
+          <div className="flex flex-col space-y-4">
+            <button
+              type="button"
+              onClick={joinMeeting}
+              className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            >
+              Join Meeting
+            </button>
+
+            <button
+              type="button"
+              onClick={joinWebinar}
+              className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            >
+              Join Webinar
+            </button>
+          </div>
+        </div>
       </section>
+
+      {/* <button
+        type="button"
+        onClick={joinMeeting}
+        className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center relative"
+      >
+        Join Meeting
+      </button>
+
+      <button
+        type="button"
+        onClick={joinWebinar}
+        className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center relative"
+      >
+        Join Webinar
+      </button> */}
     </>
   );
 }
