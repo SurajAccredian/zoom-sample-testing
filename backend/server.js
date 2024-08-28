@@ -57,7 +57,6 @@ app.post('/', (req, res) => {
   const sHeader = JSON.stringify(oHeader)
   const sPayload = JSON.stringify(oPayload)
   const sdkJWT = KJUR.jws.JWS.sign('HS256', sHeader, sPayload, process.env.ZOOM_MEETING_SDK_SECRET)
-  console.log("Hiii");
   return res.json({ signature: sdkJWT })
 })
 

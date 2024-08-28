@@ -7,7 +7,7 @@ import axios from "axios";
 // ZoomMtg.preLoadWasm();
 // ZoomMtg.prepareJssdk();
 
-const MeetingPage = () => {
+const WebinarPage = () => {
   const [loader, setLoader] = useState(false);
   // Extract query parameters
   // const location = useLocation();
@@ -35,7 +35,7 @@ const MeetingPage = () => {
       const response = await axios.post(
         import.meta.env.VITE_ZOOM_BACKEND_URL,
         {
-          meetingNumber: 81023091320,
+          meetingNumber: 83225578432,
           role,
           expirationSeconds: exp,
         },
@@ -61,11 +61,10 @@ const MeetingPage = () => {
             ZoomMtg.join({
               signature: sign,
               sdkKey: import.meta.env.VITE_ZOOM_MEETING_SDK_KEY,
-              meetingNumber: 81023091320,
-              passWord: 349543,
-              userName: "Dev Test user",
+              meetingNumber: 83225578432,
+              passWord: "",
+              userName: "Suraj D",
               userEmail: "xyz@gmail.com",
-
               success: (success) => {
                 console.log(success);
               },
@@ -163,4 +162,4 @@ const MeetingPage = () => {
   );
 };
 
-export default MeetingPage;
+export default WebinarPage;
