@@ -5,7 +5,13 @@ import { useForm } from "react-hook-form";
 
 function MeetingEnter() {
   const [meetingType, setMeetingType] = useState("meeting");
-  const [loading, setLoading] = useState(false); // State for loading
+  const [meetingData, setMeetingData] = useState({
+    meetingId: "",
+    password: "",
+    name: "",
+    email: "",
+    signature: "",
+  });
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const {
@@ -20,6 +26,13 @@ function MeetingEnter() {
   });
   const watchMeetingType = watch("meetingType", "meeting");
 
+  const setCookie = (name, value, minutes) => {
+    const now = new Date();
+    now.setTime(now.getTime() + minutes * 60 * 1000);
+    const expires = `expires=${now.toUTCString()}`;
+    document.cookie = `${name}=${JSON.stringify(value)};${expires};path=/`;
+  };
+
   const onSubmit = async (data) => {
     setLoader(true);
     const { meetingId, password, name, email } = data;
@@ -28,7 +41,7 @@ function MeetingEnter() {
     console.log(data);
     console.log(meetingId);
 
-    setLoading(true); // Set loading to true before making the request
+    // Set loading to true before making the request
 
     try {
       const role = 0;
@@ -48,14 +61,34 @@ function MeetingEnter() {
       );
       console.log("Signature:", response.data.signature);
       const sign = response.data.signature;
+      setMeetingData({
+        meetingId: newMeetingId,
+        password: password,
+        name: name,
+        email: email,
+        signature: sign,
+      });
+
+      const meetData = {
+        meetingId: newMeetingId,
+        password: password,
+        name: name,
+        email: email,
+        signature: sign,
+      };
+      console.log("The meeting data is  " + meetingData);
+
+      setCookie("meetingData", meetData, 30);
       setLoader(false);
-      navigate(
-        `/meeting?meetingId=${newMeetingId}&password=${password}&signature=${sign}&name=${name}&email=${email}`
-      );
+      navigate(`/meeting`);
+      // navigate(
+      //   `/meeting?meetingId=${newMeetingId}&password=${password}&signature=${sign}&name=${name}&email=${email}`
+      // );
+
     } catch (error) {
       console.error("Error fetching the signature:", error.message);
     } finally {
-      setLoading(false); // Reset loading state after request completes
+      setLoader(false); // Reset loading state after request completes
     }
   };
 
@@ -220,7 +253,6 @@ function MeetingEnter() {
 
               <button
                 type="submit"
-                disabled={loading} // Disable button when loading
                 className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center relative"
               >
                 Join
