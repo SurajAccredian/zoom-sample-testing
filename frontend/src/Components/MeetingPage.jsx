@@ -35,7 +35,7 @@ const MeetingPage = () => {
       const response = await axios.post(
         import.meta.env.VITE_ZOOM_BACKEND_URL,
         {
-          meetingNumber: 81023091320,
+          meetingNumber: 86096376065,
           role,
           expirationSeconds: exp,
         },
@@ -61,8 +61,8 @@ const MeetingPage = () => {
             ZoomMtg.join({
               signature: sign,
               sdkKey: import.meta.env.VITE_ZOOM_MEETING_SDK_KEY,
-              meetingNumber: 81023091320,
-              passWord: 349543,
+              meetingNumber: 86096376065,
+              passWord: 879409,
               userName: "Dev Test user",
               userEmail: "xyz@gmail.com",
 
