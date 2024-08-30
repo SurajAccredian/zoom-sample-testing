@@ -54,7 +54,7 @@ const MeetingPage = () => {
         ZoomMtg.init({
           leaveUrl: import.meta.env.VITE_ZOOM_FRONTEND_URL,
           patchJsMedia: true,
-          leaveOnPageUnload: true,
+          leaveOnPageUnload: false,
           success: (success) => {
             console.log(success);
 
