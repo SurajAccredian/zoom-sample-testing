@@ -49,8 +49,12 @@ function MeetingEnter() {
   };
 
   const onSubmit = async (data) => {
-    setLoader(true);
     const { meetingId, password, name, email } = data;
+     navigate(
+        `/meeting?name=${name}&email=${email}`
+      );
+    return
+    setLoader(true);
     const newMeetingId = meetingId.replace(/\s+/g, "");
     console.log(newMeetingId);
     console.log(data);
@@ -95,10 +99,8 @@ function MeetingEnter() {
 
       setCookie("meetingData", meetData, 30);
       setLoader(false);
-      navigate(`/meeting`);
-      // navigate(
-      //   `/meeting?meetingId=${newMeetingId}&password=${password}&signature=${sign}&name=${name}&email=${email}`
-      // );
+      // navigate(`/meeting`);
+    
     } catch (error) {
       console.error("Error fetching the signature:", error.message);
     } finally {
@@ -134,7 +136,7 @@ function MeetingEnter() {
           </div>
         </div>
       )}
-      {/* 
+      
       <section className="flex flex-col h-[100vh] justify-center items-center font-sans bg-gray-50 pt-6">
         <div className="w-full bg-white backdrop-blur-sm rounded-lg shadow-2xl  sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -166,7 +168,7 @@ function MeetingEnter() {
                 </label>
               </div>
 
-              <div>
+              {/* <div>
                 <label
                   htmlFor="meetingId"
                   className="block mb-2 text-sm font-medium text-gray-900"
@@ -193,9 +195,9 @@ function MeetingEnter() {
                       : "Webinar ID"}{" "}
                   </p>
                 )}
-              </div>
+              </div> */}
 
-              {watchMeetingType === "meeting" && (
+              {/* {watchMeetingType === "meeting" && (
                 <>
                   <div>
                     <label
@@ -225,7 +227,7 @@ function MeetingEnter() {
                     )}
                   </div>
                 </>
-              )}
+              )} */}
 
               <div>
                 <label
@@ -274,8 +276,8 @@ function MeetingEnter() {
             </form>
           </div>
         </div>
-      </section> */}
-      <section className="flex flex-col  h-[100vh] justify-center items-center font-sans bg-gray-50 pt-6">
+      </section>
+      {/* <section className="flex flex-col  h-[100vh] justify-center items-center font-sans bg-gray-50 pt-6">
         <div className="max-w-sm w-full mx-auto bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-4 text-center">
             Join a Session
@@ -298,7 +300,7 @@ function MeetingEnter() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <button
         type="button"
