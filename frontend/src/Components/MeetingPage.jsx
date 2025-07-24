@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { ZoomMtg } from "@zoom/meetingsdk";
 import { useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 // Ensure you are using the correct version
 // ZoomMtg.preLoadWasm();
@@ -10,13 +11,13 @@ import axios from "axios";
 const MeetingPage = () => {
   const [loader, setLoader] = useState(false);
   // Extract query parameters
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
   // const meetingId = queryParams.get("meetingId");
   // const password = queryParams.get("password");
   // const sign = queryParams.get("signature");
-  // const name = queryParams.get("name");
-  // const email = queryParams.get("email");
+  const name = queryParams.get("name");
+  const email = queryParams.get("email");
 
   useEffect(() => {
     //   const getCookie = (name) => {
@@ -35,7 +36,7 @@ const MeetingPage = () => {
       const response = await axios.post(
         import.meta.env.VITE_ZOOM_BACKEND_URL,
         {
-          meetingNumber: 82797903098,
+          meetingNumber: 82036630237,
           role,
           expirationSeconds: exp,
         },
@@ -55,16 +56,17 @@ const MeetingPage = () => {
           leaveUrl: import.meta.env.VITE_ZOOM_FRONTEND_URL,
           patchJsMedia: true,
           leaveOnPageUnload: false,
+          isSupportBreakout: true,
           success: (success) => {
             console.log(success);
 
             ZoomMtg.join({
               signature: sign,
-              sdkKey: import.meta.env.VITE_ZOOM_MEETING_SDK_KEY,
-              meetingNumber: 82797903098,
-              passWord: 185915,
-              userName: "Dev Test user",
-              userEmail: "xyz@gmail.com",
+              // sdkKey: import.meta.env.VITE_ZOOM_MEETING_SDK_KEY,
+              meetingNumber: 82036630237,
+              passWord: 123456,
+              userName: name,
+              userEmail: email,
 
               success: (success) => {
                 console.log(success);

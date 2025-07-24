@@ -46,7 +46,7 @@ app.post('/', (req, res) => {
 
   const oPayload = {
     appKey: process.env.ZOOM_MEETING_SDK_KEY,
-    sdkKey: process.env.ZOOM_MEETING_SDK_KEY,
+    // sdkKey: process.env.ZOOM_MEETING_SDK_KEY,
     mn: meetingNumber,
     role,
     iat,
